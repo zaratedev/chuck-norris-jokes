@@ -2,6 +2,9 @@
 
 Create chuck norris jokes in your next PHP Project
 
+[![Build Status](https://travis-ci.org/zaratedev/chuck-norris-jokes.svg?branch=master)](https://travis-ci.org/zaratedev/chuck-norris-jokes)
+[![StyleCI](https://styleci.io/repos/211190613/shield)](https://styleci.io/repos/211190613)
+
 ## Installation
 
 Require the package using composer:
