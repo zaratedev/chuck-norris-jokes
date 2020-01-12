@@ -2,6 +2,10 @@
 
 namespace Zaratedev\ChuckNorrisJokes\Tests;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Zaratedev\ChuckNorrisJokes\JokeFactory;
 
@@ -10,28 +14,18 @@ class JokeFactoryTest extends TestCase
     /** @test */
     public function it_returns_a_random_joke()
     {
-        $jokes = new JokeFactory([
-            'This is a joke',
+        // Create a mock and queue two responses.
+        $mock = new MockHandler([
+            new Response(200, [], '{ "type": "success", "value": { "id": 536, "joke": "Don\'t worry about tests, Chuck Norris\'s test cases cover your code too.", "categories": ["nerdy"] } }'),
         ]);
 
-        $joke = $jokes->getRandomJoke();
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
 
-        $this->assertSame('This is a joke', $joke);
-    }
-
-    /** @test */
-    public function it_returns_a_random_default_joke()
-    {
-        $chuckNorrisJokes = [
-            'The First rule of Chuck Norris is: you do not talk about Chuck Norris.',
-            'Chuck Norris\' tears cure cancer. Too bad he has never cried.',
-            'Chuck Norris counted to infinity... Twice.',
-        ];
-
-        $jokes = new JokeFactory();
+        $jokes = new JokeFactory($client);
 
         $joke = $jokes->getRandomJoke();
 
-        $this->assertContains($joke, $chuckNorrisJokes);
+        $this->assertSame('Don\'t worry about tests, Chuck Norris\'s test cases cover your code too.', $joke);
     }
 }
