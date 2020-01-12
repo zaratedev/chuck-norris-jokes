@@ -15,7 +15,7 @@ class JokeFactory
      *
      * @param  array|null  $jokes
      */
-    public function __construct(Client $http)
+    public function __construct(Client $http = null)
     {
         $this->http = $http ?: new Client();
     }
