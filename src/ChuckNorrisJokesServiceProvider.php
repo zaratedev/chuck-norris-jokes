@@ -16,8 +16,6 @@ class ChuckNorrisJokesServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('chuck-norris', function () {
-            return new JokeFactory();
-        });
+        $this->app->bind('chuck-norris', fn () => new JokeFactory());
     }
 }
