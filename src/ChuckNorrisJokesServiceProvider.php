@@ -2,8 +2,8 @@
 
 namespace Zaratedev\ChuckNorrisJokes;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Zaratedev\ChuckNorrisJokes\Console\ChuckNorrisJoke;
 use Zaratedev\ChuckNorrisJokes\Http\Controllers\ChuckNorrisController;
 
