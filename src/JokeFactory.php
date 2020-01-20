@@ -8,7 +8,7 @@ class JokeFactory
 {
     const API_ENDPOINT = 'http://api.icndb.com/jokes/random';
 
-    protected ?Client $http;
+    protected $http;
 
     /**
      * JokeFactory construct.
